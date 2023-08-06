@@ -1,0 +1,32 @@
+<div class="login">
+  <div class="login__content">
+    <h1>Log in</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input formControlName="email" matInput placeholder="pat@example.com" required>
+        <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+          Please enter a valid email address.
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input formControlName="password" matInput [type]="hideFirst ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hideFirst = !hideFirst" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hideFirst">
+          <mat-icon>{{hideFirst ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+          The password must be at least 8 characters and contain at least one digit, one uppercase and lowercase letter
+          and one character.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="send">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid"> Send</button>
+      </div>
+    </form>
+  </div>
+</div>

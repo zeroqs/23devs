@@ -1,0 +1,15 @@
+.example-form {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.textarea {
+  min-height: 150px;
+}

@@ -1,0 +1,10 @@
+<header>
+  <button (click)="openDialog('0ms','0ms')" class="add-btn">Create</button>
+</header>
+<main class="users-list">
+  <app-post *ngFor="let post of posts"
+            [post]="post"></app-post>
+</main>
+<footer>
+  <app-paginator></app-paginator>
+</footer>

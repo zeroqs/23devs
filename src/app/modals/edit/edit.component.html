@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Edit post</h1>
+<form class="example-form" [formGroup]="form">
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Title</mat-label>
+    <input formControlName="title" matInput placeholder="Enter title" value="{{title}}">
+    <mat-error *ngIf="titleMessage?.errors?.['required']">Title is required.</mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Article text</mat-label>
+    <textarea formControlName="body" class="textarea" matInput placeholder="Enter article text"
+              value="{{body}}"></textarea>
+    <mat-error *ngIf="bodyMessage?.errors?.['required']">Article is required.</mat-error>
+  </mat-form-field>
+</form>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button (click)="onEdit()" [disabled]="!form.valid" cdkFocusInitial>Save</button>
+</div>

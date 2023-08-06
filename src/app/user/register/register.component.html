@@ -1,0 +1,74 @@
+<div class="register">
+  <div class="register__content">
+    <h1>Register</h1>
+    <form [formGroup]="registrationForm" (ngSubmit)="registerUser()">
+      <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input formControlName="firstName" matInput required>
+        <mat-error
+          *ngIf="registrationForm.controls.firstName && registrationForm.controls.firstName.invalid">
+          The first name must contain only
+          allowed characters and be no longer than 50 characters.
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Surname</mat-label>
+        <input formControlName="lastName" matInput required>
+        <mat-error *ngIf="registrationForm.controls.lastName.touched && registrationForm.controls.lastName.invalid">
+          The surname must contain only
+          allowed characters and be no longer than 50 characters.
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input formControlName="email" matInput placeholder="pat@example.com" required>
+        <mat-error *ngIf="registrationForm.controls.email.touched && registrationForm.controls.email.invalid">
+          Please enter a valid email address.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input formControlName="password" matInput [type]="hideFirst ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hideFirst = !hideFirst" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hideFirst">
+          <mat-icon>{{hideFirst ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registrationForm.controls.password.touched && registrationForm.controls.password.invalid">
+          The password must be at least 8 characters and contain at least one digit, one uppercase and lowercase letter
+          and one character.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Repeat your password</mat-label>
+        <input formControlName="confirmPassword" matInput pattern="{{registrationForm.value.password}}"
+               [type]="hideSecond ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hideSecond = !hideSecond" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hideSecond">
+          <mat-icon>{{hideSecond ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registrationForm.value">Passwords do not match.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input class="birthday" matInput [matDatepicker]="picker" formControlName="dateOfBirth"
+               placeholder="Birthday">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error
+          *ngIf="registrationForm.controls.dateOfBirth.touched && registrationForm.controls.dateOfBirth.invalid">
+          You must be at least 18 years old
+        </mat-error>
+      </mat-form-field>
+
+      <div class="send">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">Send</button>
+      </div>
+    </form>
+  </div>
+</div>
