@@ -57,6 +57,7 @@ export class LoginComponent {
   }
 
   login() {
+    localStorage.setItem('user', JSON.stringify(this.loginForm.value))
     this.router.navigate(['/'])
   }
 }
